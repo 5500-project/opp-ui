@@ -6,6 +6,7 @@ import UserSignUp from "./components/UserSignup";
 import ChangePassword from "./components/ChangePassword";
 import AccountPage from "./components/Account";
 import FeaturePage from "./components/FeaturePage";
+import HelpPage from "./components/Help";
 import PaymentMain from "./payment/PaymentMain";
 import PaymentHistory from "./payment/PaymentHistory";
 import PaymentPending from "./payment/PaymentPending";
@@ -36,6 +37,10 @@ function App() {
           <Route
             path="/features"
             element={<FeaturePage />}
+          />
+          <Route
+            path="/help"
+            element={<HelpPage />}
           />
           <Route path="/account" element={<AccountPage />} />
           <Route path="/change-password" element={<ChangePassword />} />

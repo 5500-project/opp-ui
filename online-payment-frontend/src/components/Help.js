@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import '../styles/FeaturePage.css';
 import Header from "./Header";
 
-const FeaturesPage = () => {
+const HelpPage = () => {
     const location = useLocation();
     const username = location.state?.username;
     const accessToken = location.state?.accessToken;
@@ -74,8 +74,8 @@ const FeaturesPage = () => {
                 </span>
               </li>
               <li>
-                <span onClick={() => handleFeatureHelpHomeClick("/help")}>
-                  Help
+                <span onClick={() => handleFeatureHelpHomeClick("/features")}>
+                  Features
                 </span>
               </li>
             </ul>
@@ -84,64 +84,28 @@ const FeaturesPage = () => {
         </div>
     <div className="features-page">
     <div className="feature-section">
-        <h2>Web UI</h2>
+        <h2>🌟 Help ✨</h2>
         <p>
-        Users interact with this layer to access all functionalities of the
-        platform. It communicates with backend services through API calls.
-        </p>
-        <p>
-        The Web UI is designed with a user-friendly interface, providing an
-        intuitive experience for users to navigate through various features of the
-        platform.
-        </p>
-        {/* Additional content for Web UI */}
+            ✨ Need a sprinkle of assistance?</p>
+        <p>🚀Drop us a line at kwang97527@gmail.com/liu.boya@northeastern.edu/yclu28@gmail.com 
+        <p>🧙‍♂️with your username, a dash of the problem, 
+                and any other enchanting details.</p>    </p>
+        <p>🧚‍♂️ We're here to help you! 😊✨</p>
     </div>
 
     <div className="feature-section">
-        <h2>Authentication</h2>
+        <h2>🌟 Feedback: Sprinkle Us with Your Thoughts! ✨</h2>
         <p>
-        Handles user login, registration, and profile management interactions.
-        </p>
-        <p>
-        Our authentication system employs robust security measures to ensure the
-        confidentiality and integrity of user data.
+        🌟 We'd love to hear your thoughts to sprinkle some extra magic on our app!🌟 
+        <p>🚀 Share your feedback and enchanting advice with us at yclu28@gmail.com/liu.boya@northeastern.edu/kwang97527@gmail.com.</p>
+        <p>Your feedback will help us keep our app spellbindingly awesome! 🧙‍♂️💫</p>
         </p>
     </div>
 
-    <div className="feature-section">
-        <h2>Transaction Management</h2>
-        <p>
-        Enables users to initiate transactions, view transaction history, etc.
-        </p>
-        <p>
-        The Transaction Management feature provides a seamless and secure way for
-        users to handle financial transactions within the platform.
-        </p>
-    </div>
-
-    <div className="feature-section">
-        <h2>User Profile</h2>
-        <p>
-        Provides visualizations related to the profile, balances, and transactions.
-        </p>
-        <p>
-        Users can customize their profiles, track balances in real-time, and
-        analyze their transaction history through detailed visualizations.
-        </p>
-    </div>
-
-    <div className="feature-section">
-        <h2>Notifications</h2>
-        <p>Displays alerts and notifications to the users.</p>
-        <p>
-        Stay informed with our Notifications feature, which keeps users updated
-        on important events, account activities, and security alerts.
-        </p>
-    </div>
     </div>
 
     </body>
   );
 }
 
-export default FeaturesPage;
+export default HelpPage;

@@ -77,11 +77,11 @@ function MainPage() {
                   Features
                 </span>
               </li>
-              {/* <li>
+              <li>
                 <span onClick={() => handleFeatureHelpHomeClick("/help")}>
                   Help
                 </span>
-              </li> */}
+              </li>
             </ul>
           </nav>
         </section>
@@ -156,8 +156,7 @@ function MainPage() {
         </section>
         <div className="footer">
           <p>
-            &copy; 2023 CompanyXXX. All rights reserved. | Privacy Policy |
-            Terms of Service
+            &copy; 2023 Company Team Snoopy. All rights reserved. | Help and Feedback: m13051662977@gmail.com
           </p>
         </div>
       </div>

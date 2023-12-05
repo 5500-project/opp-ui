@@ -53,6 +53,32 @@ const UserLogin = () => {
         setError(`Please check error message ${error.message}`);
       }
     });
+    // const handleLogin = async () => {
+    //   try {
+    //     const response = await axios.post(apiUrl, formData, {
+    //       headers: {
+    //         'Accept': 'application/json',
+    //         'Content-Type': 'application/x-www-form-urlencoded',
+    //       },
+    //     });
+    
+    //     console.log('Success:', response.data);
+    //     const accessToken = response.data.access_token;
+    
+    //     // Save the access token in local storage or a cookie for future requests
+    //     localStorage.setItem("accessToken", accessToken);
+    //     alert("Log in success, you will be directed to the Home page.");
+    //     navigate("/", { state: { username, accessToken } });
+    //   } catch (error) {
+    //     console.error('Error:', error);
+    //     if (error.response && error.response.status === 401) {
+    //       setError("Wrong password or username, please check again");
+    //     } else {
+    //       setError(`Please check error message: ${error.message}`);
+    //     }
+    //   }
+    // };
+    // handleLogin();
   };
 
   return (
