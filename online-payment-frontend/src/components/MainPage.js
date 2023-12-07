@@ -157,7 +157,7 @@ function MainPage() {
         </section>
         <div className="footer">
           <p>
-            &copy; 2023 Company Team Snoopy. All rights reserved. | Help and Feedback: m13051662977@gmail.com
+            &copy; Team Snoopy.
           </p>
         </div>
       </div>
