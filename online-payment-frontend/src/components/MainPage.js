@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 function MainPage() {
   const location = useLocation();
   const username = location.state?.username;
+  const userPassword = location.state?.userPassword;
   const accessToken = location.state?.accessToken;
   const navigate = useNavigate();
 
@@ -21,7 +22,7 @@ function MainPage() {
       navigate("/login");
     } else {
       // If logged in, navigate to the respective service webpage
-      navigate(serviceLink, { state: { username, accessToken } });
+      navigate(serviceLink, { state: { username, accessToken, userPassword } });
     }
   };
   const handleNavigationClick = (path) => {
@@ -31,7 +32,7 @@ function MainPage() {
       navigate("/login");
     } else {
       // If logged in, navigate to the specified path
-      navigate(path, { state: { username, accessToken } });
+      navigate(path, { state: { username, accessToken, userPassword } });
     }
   };
   const handleFeatureHelpHomeClick = (path) =>{
@@ -41,7 +42,7 @@ function MainPage() {
       navigate(path);
     } else {
       // If logged in, navigate to the specified path
-      navigate(path, { state: { username, accessToken } });
+      navigate(path, { state: { username, accessToken, userPassword } });
     }
   }
 
@@ -93,7 +94,7 @@ function MainPage() {
               <h2 className="box-title">Quick Transaction Initiation</h2>
               <p className="box-content">
               This feature allows users to quickly initiate a payment transaction. 
-              Users can enter the recipient's details, payment amount, and select the 
+              Users can enter the payment cardnumber, payment amount, and select the 
               preferred payment method. The system will validate the transaction details,
                process the payment, and provide immediate feedback to the user.
               </p>

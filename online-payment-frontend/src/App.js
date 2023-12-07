@@ -5,6 +5,7 @@ import UserLogin from "./components/UserLogin";
 import UserSignUp from "./components/UserSignup";
 import ChangePassword from "./components/ChangePassword";
 import AccountPage from "./components/Account";
+import DeactiveAccount from "./components/DeactiveAccount";
 import FeaturePage from "./components/FeaturePage";
 import HelpPage from "./components/Help";
 import PaymentMain from "./payment/PaymentMain";
@@ -43,6 +44,7 @@ function App() {
             element={<HelpPage />}
           />
           <Route path="/account" element={<AccountPage />} />
+          <Route path="/deactive" element={<DeactiveAccount />} />
           <Route path="/change-password" element={<ChangePassword />} />
         </Routes>
       </div>

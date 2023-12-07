@@ -7,6 +7,7 @@ const FeaturesPage = () => {
     const location = useLocation();
     const username = location.state?.username;
     const accessToken = location.state?.accessToken;
+    const userPassword = location.state?.userPassword;
     const navigate = useNavigate();
   
     const handleLogout = () => {
@@ -27,7 +28,7 @@ const FeaturesPage = () => {
       navigate("/login");
     } else {
       // If logged in, navigate to the specified path
-      navigate(path, { state: { username, accessToken } });
+      navigate(path, { state: { username, accessToken, userPassword } });
     }
   };
   const handleFeatureHelpHomeClick = (path) =>{
@@ -37,7 +38,7 @@ const FeaturesPage = () => {
       navigate(path);
     } else {
       // If logged in, navigate to the specified path
-      navigate(path, { state: { username, accessToken } });
+      navigate(path, { state: { username, accessToken, userPassword } });
     }
   }
 

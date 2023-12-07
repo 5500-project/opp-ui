@@ -43,7 +43,7 @@ const UserLogin = () => {
       // Save the access token in local storage or a cookie for future requests
       localStorage.setItem("accessToken", accessToken);
       alert("Log in success, your will be directed to Home page.")
-      navigate("/", { state: { username, accessToken } });
+      navigate("/", { state: { username, accessToken, password } });
     })
     .catch(error => {
       console.error('Error:', error);

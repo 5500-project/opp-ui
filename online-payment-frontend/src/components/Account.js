@@ -6,6 +6,7 @@ import "../styles/Account.css";
 function AccountPage() {
   const location = useLocation();
   const username = location.state?.username;
+  const userPassword = location.state?.userPassword;
   const accessToken = location.state?.accessToken;
   const navigate = useNavigate();
   const [page, setPage] = useState(1);
@@ -62,32 +63,36 @@ function AccountPage() {
       // If logged in, navigate to the specified path
       if (path === "/home") {
         // If the path is "/home", navigate to the main page with the username
-        navigate("/", { state: { username, accessToken } });
+        navigate("/", { state: { username, accessToken, userPassword } });
       } else if (path === "/payment") {
         // Otherwise, navigate to the specified path
-        navigate("/payment", { state: { username, accessToken } });
+        navigate("/payment", { state: { username, accessToken, userPassword } });
       } else if (path === "/manage") {
-        navigate("/account", { state: { username, accessToken } });
+        navigate("/account", { state: { username, accessToken, userPassword } });
       } else if (path == "/history") {
-        navigate("/history", { state: { username, accessToken } });
+        navigate("/history", { state: { username, accessToken, userPassword } });
       }
     }
   };
   const handleChangePasswordClick = () => {
     // Navigate to "/change-password" and pass username and accessToken
-    navigate("/change-password", { state: { username, accessToken } });
+    navigate("/change-password", { state: { username, accessToken, userPassword } });
+  };
+  const handleDeactiveClick = () => {
+    // Navigate to "/change-password" and pass username and accessToken
+    navigate("/deactive", { state: { username, accessToken, userPassword } });
   };
   const handleNavigationClick2 = () => {
     // Navigate to "/history" and pass username and accessToken
-    navigate("/history", { state: { username, accessToken } });
+    navigate("/history", { state: { username, accessToken, userPassword } });
   };
   const handleNavigationClick3 = () => {
     // Navigate to "/history" and pass username and accessToken
-    navigate("/payment-pending", { state: { username, accessToken } });
+    navigate("/payment-pending", { state: { username, accessToken, userPassword } });
   };
   const handleNavigationClick4 = () => {
     // Navigate to "/history" and pass username and accessToken
-    navigate("/payment-finished", { state: { username, accessToken } });
+    navigate("/payment-finished", { state: { username, accessToken, userPassword } });
   };
   // Use the username to fetch user information from the backend
 
@@ -135,7 +140,7 @@ function AccountPage() {
               <button onClick={handleChangePasswordClick}>Change User Password</button>
             </li>
             <li>
-              <button>Deactivate User</button>
+              <button onClick={handleDeactiveClick}>Deactivate User</button>
             </li>
           </ul>
         </nav>
