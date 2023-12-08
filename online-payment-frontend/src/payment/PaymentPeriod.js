@@ -14,6 +14,7 @@ function PaymentPeriod(){
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
     const [totalAmount, setTotalAmount] = useState(0)
+    const [searchPerformed, setSearchPerformed] = useState(false)
 
     // Pagination logic
     const itemsPerPage = 3;
@@ -37,31 +38,32 @@ function PaymentPeriod(){
     };
     const handleSearch = () => {
         fetchData();
+        setSearchPerformed(true);
       };
     
     useEffect(() => {
         fetchData();
       }, [username, page, startDate, endDate]);
-      const fetchData = async () => {
-        try {
-          const apiUrl = "http://18.216.139.10:8000/transaction/total_balance_time_period";
-          const headers = {
-            accept: "application/json",
-            Authorization: `Bearer ${accessToken}`,
-          };
-          const params = {
-            start_date: startDate,
-            end_date: endDate,
-          };
-    
-          const response = await axios.get(apiUrl, { params, headers });
-          console.log("API Response:", response.data);
-          // Update total amount based on API response
-          setTotalAmount(response.data); 
-        } catch (error) {
-          console.error("Error:", error.message);
-        }
-      };
+    const fetchData = async () => {
+      try {
+        const apiUrl = "http://18.216.139.10:8000/transaction/total_balance_time_period";
+        const headers = {
+          accept: "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        };
+        const params = {
+          start_date: startDate,
+          end_date: endDate,
+        };
+  
+        const response = await axios.get(apiUrl, { params, headers });
+        console.log("API Response:", response.data);
+        // Update total amount based on API response
+        setTotalAmount(response.data); 
+      } catch (error) {
+        console.error("Error:", error.message);
+      }
+    };
       
     
     const handleNavigationClick = (path) => {
@@ -149,9 +151,11 @@ function PaymentPeriod(){
             <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
             <button onClick={handleSearch}>Search</button>
           </div>
-          <div className="total-amount">
-            <p>Total Amount: ${totalAmount}</p>
-          </div>
+          {searchPerformed && (
+            <div className="total-amount">
+              <p>Total Amount: ${totalAmount}</p>
+            </div>
+          )}
         </div>
         </div>
         </body>  

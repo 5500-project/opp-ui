@@ -36,12 +36,19 @@ function PaymentMain() {
     }
   };
 
+  let isSubmitting = false;
   const handleNextButtonClick = async (event) => {
     event.preventDefault();
+    if(isSubmitting){
+      alert("Submission is processing");
+      return;
+    }
+
     if (!amount || !card_number ) {
       setError("Please enter amount and card number!");
       return;
     }
+    isSubmitting = true;
 
     const params = {
       card_number: card_number,
@@ -69,6 +76,9 @@ function PaymentMain() {
       console.error('Error:', error.message);
       setError(`An error occurred while processing the transaction.${error.message}`);
       alert(`Transaction rejected!${error.message}`);
+    })
+    .finally(() => {
+      isSubmitting = false;
     });
   };
 

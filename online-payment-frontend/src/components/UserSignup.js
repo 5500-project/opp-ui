@@ -113,10 +113,11 @@ const UserSignup = () => {
 
           <label htmlFor="email">Email:</label>
           <input
-            type="text"
+            type="email"
             id="email"
             name="email"
             value={email}
+            placeholder="example:xxx@xxx.xxx"
             onChange={(e) => setEmail(e.target.value)}
           />
 
@@ -138,10 +139,11 @@ const UserSignup = () => {
           />
           <label htmlFor="phoneNumber">Phone Number:</label>
           <input
-            type="text"
+            type="tel"
             id="phoneNumber"
             name="phoneNumber"
             value={phoneNumber}
+            placeholder="example:xxx-xxx-xxxx"
             onChange={(e) => setPhoneNumber(e.target.value)}
           />
 

@@ -10,6 +10,7 @@ const PaymentProcess = () => {
   const userPassword = location.state?.userPassword || "DefaultUsername";
   const accessToken = location.state?.accessToken || "DefaultAccessToken";
   const userDataToSend = location.state?.userDataToSend;
+  const CRYPTED = "************";
 
   
   const [verificationCode, setVerificationCode] = useState("");
@@ -27,7 +28,7 @@ const PaymentProcess = () => {
       <div className="finance-report">
             <h2>Payment Status</h2>
             <div className="card_number">
-                <strong>Card number:</strong> {userDataToSend.card_number}
+                <strong>Card number:</strong> {CRYPTED+userDataToSend.card_number.slice(-4)}
             </div>
             <div className="amount">
                 <strong>Amount:</strong> ${userDataToSend.amount}
