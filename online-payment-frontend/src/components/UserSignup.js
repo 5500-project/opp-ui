@@ -99,6 +99,9 @@ const UserSignup = () => {
             id="password"
             name="password"
             value={password}
+            maxlength="18"
+            minlength = "4"
+            placeholder="Max length: 18, Min length: 4"
             onChange={(e) => setPassword(e.target.value)}
           />
 
