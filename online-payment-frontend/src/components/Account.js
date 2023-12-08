@@ -153,7 +153,7 @@ function AccountPage() {
         <h4><b>Financial Report:</b> This is your latest completed transaction!</h4>
         {/*financial report details */}
         <div className="finance-report">
-            <h2>Payment Status</h2>
+            <h2>Transaction Details</h2>
             <div className="status">
                 <strong>Status:</strong> {status}
             </div>
