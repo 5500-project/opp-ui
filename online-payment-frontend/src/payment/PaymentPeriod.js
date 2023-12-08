@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../styles/PaymentHistory.css";
 
-function PaymentHistory(){
+function PaymentPeriod(){
     const location = useLocation();
     const username = location.state?.username;
     const accessToken = location.state?.accessToken;
@@ -11,6 +11,9 @@ function PaymentHistory(){
     const navigate = useNavigate();
     const [transactionHistory, setTransactionHistory] = useState([]);
     const [page, setPage] = useState(1);
+    const [startDate, setStartDate] = useState("");
+    const [endDate, setEndDate] = useState("");
+    const [totalAmount, setTotalAmount] = useState(0)
 
     // Pagination logic
     const itemsPerPage = 3;
@@ -23,30 +26,42 @@ function PaymentHistory(){
         // Redirect to the main page after logout
         navigate("/");
     };
-
-    useEffect(() => {
-
-        //setTransactionHistory(transactionHistories);
-        // Fetch transaction history data from the backend
-        const fetchData = async () => {
-          try{
-            const apiUrl = 'http://18.216.139.10:8000/transaction/';
-            const headers = {
-                'accept': 'application/json',
-                'Authorization': `Bearer ${accessToken}` // Use the token here
-            };
-
-            const secondResponse = await axios.get(apiUrl, { headers });   
-            console.log('API Response:', secondResponse.data);
-            setTransactionHistory(secondResponse.data);
-
-          }catch (error){
-            console.error('Error in API call:', error.message);
-          }
-        }
-        // Call the async function
+    const handleNavigationClick2 = () => {
+        navigate("/history", { state: { username, accessToken, userPassword } });
+    };
+    const handleNavigationClick3 = () => {
+        navigate("/payment-pending", { state: { username, accessToken, userPassword } });
+    };
+    const handleNavigationClick4 = () => {
+        navigate("/payment-finished", { state: { username, accessToken, userPassword } });
+    };
+    const handleSearch = () => {
         fetchData();
-      }, [username, page]);
+      };
+    
+    useEffect(() => {
+        fetchData();
+      }, [username, page, startDate, endDate]);
+      const fetchData = async () => {
+        try {
+          const apiUrl = "http://18.216.139.10:8000/transaction/total_balance_time_period";
+          const headers = {
+            accept: "application/json",
+            Authorization: `Bearer ${accessToken}`,
+          };
+          const params = {
+            start_date: startDate,
+            end_date: endDate,
+          };
+    
+          const response = await axios.get(apiUrl, { params, headers });
+          console.log("API Response:", response.data);
+          // Update total amount based on API response
+          setTotalAmount(response.data); 
+        } catch (error) {
+          console.error("Error:", error.message);
+        }
+      };
       
     
     const handleNavigationClick = (path) => {
@@ -87,78 +102,13 @@ function PaymentHistory(){
         setCurrentPage(newPage);
     };
 
-    const handleNavigationClick2 = () => {
-      navigate("/history", { state: { username, accessToken, userPassword } });
-    };
-    const handleNavigationClick3 = () => {
-      navigate("/payment-pending", { state: { username, accessToken, userPassword } });
-    };
-    const handleNavigationClick4 = () => {
-      navigate("/payment-finished", { state: { username, accessToken, userPassword } });
-    };
-    const handleNavigationClick5 = () => {
-      navigate("/period", { state: { username, accessToken, userPassword } });
-    };
-    //test case
-    const transactionHistories = [
-        {
-          status: "completed",
-          user_id: "1",
-          amount: 25.0,
-          transaction_date: "2023-11-20T14:30:00.000Z",
-          id: 1,
-          payment_method: "credit",
-        },
-        {
-          status: "failed",
-          user_id: "1",
-          amount: 30.0,
-          transaction_date: "2023-11-21T10:15:00.000Z",
-          id: 2,
-          payment_method: "debit",
-        },
-        {
-          status: "completed",
-          user_id: "2",
-          amount: 15.0,
-          transaction_date: "2023-11-22T18:45:00.000Z",
-          id: 3,
-          payment_method: "credit",
-        },
-        {
-          status: "completed",
-          user_id: "3",
-          amount: 40.0,
-          transaction_date: "2023-11-23T12:20:00.000Z",
-          id: 4,
-          payment_method: "debit",
-        },
-        {
-          status: "failed",
-          user_id: "2",
-          amount: 22.0,
-          transaction_date: "2023-11-24T09:00:00.000Z",
-          id: 5,
-          payment_method: "credit",
-        },
-        {
-          status: "completed",
-          user_id: "3",
-          amount: 18.0,
-          transaction_date: "2023-11-25T16:30:00.000Z",
-          id: 6,
-          payment_method: "debit",
-        },
-      ];
-
-
-
     return(
         <body>
         <header className="header">
           <h1>Logo</h1>
           <nav>
             <ul>
+              {/* Navigation links */}
               <li>
                 <span onClick={() => handleNavigationClick("/home")}>Home</span>
               </li>
@@ -178,8 +128,9 @@ function PaymentHistory(){
           </nav>
         </header>
 
+
         <div className="transaction-history-container">
-          <section className = "payment-buttons">
+        <section className = "payment-buttons">
             <button className="payment-button" onClick={handleNavigationClick2}>
               Show All Transaction History
             </button>
@@ -189,29 +140,23 @@ function PaymentHistory(){
             <button className="payment-button" onClick={handleNavigationClick4}>
               Show Finished Transactions
             </button>
-            <button className="payment-button" onClick={handleNavigationClick5}>
-              Show Balance Within Time Period
-            </button>
-          </section>
-        {renderTransactionHistory()}
-
-        {/* Pagination */}
-        <div className="pagination">
-          <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
-            Previous
-          </button>
-          <span>{currentPage}</span>
-          <button
-            onClick={() => handlePageChange(currentPage + 1)}
-            disabled={indexOfLastItem >= transactionHistory.length}
-          >
-            Next
-          </button>
+        </section>
+        <div className="PaymentPeriod">
+          <div className="date-selection">
+            <label>Start Date:</label>
+            <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
+            <label>End Date:</label>
+            <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
+            <button onClick={handleSearch}>Search</button>
+          </div>
+          <div className="total-amount">
+            <p>Total Amount: ${totalAmount}</p>
+          </div>
         </div>
-      </div>
+        </div>
         </body>  
 
     );
 
 }
-export default PaymentHistory;
+export default PaymentPeriod;

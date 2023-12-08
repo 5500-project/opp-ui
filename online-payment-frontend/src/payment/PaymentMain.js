@@ -8,6 +8,7 @@ function PaymentMain() {
   const navigate = useNavigate();
   const username = location.state?.username;
   const accessToken = location.state?.accessToken;
+  const userPassword = location.state?.userPassword;
   const [user_id, setUserID] = useState("");
   const [amount, setAmount] = useState(0);
   const [card_number, setCardNumber] = useState("");
@@ -24,13 +25,13 @@ function PaymentMain() {
       // If logged in, navigate to the specified path
       if (path === "/home") {
         // If the path is "/home", navigate to the main page with the username
-        navigate("/", { state: { username, accessToken } });
+        navigate("/", { state: { username, accessToken, userPassword } });
       } else if (path === "/account") {
         // Otherwise, navigate to the specified path
-        navigate("/account", { state: { username, accessToken } });
+        navigate("/account", { state: { username, accessToken, userPassword } });
       }else if (path === "/history") {
         // Otherwise, navigate to the specified path
-        navigate("/history", { state: { username, accessToken } });
+        navigate("/history", { state: { username, accessToken, userPassword } });
       }
     }
   };

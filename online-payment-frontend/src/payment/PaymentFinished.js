@@ -7,6 +7,7 @@ function PaymentFinished(){
     const location = useLocation();
     const username = location.state?.username;
     const accessToken = location.state?.accessToken;
+    const userPassword = location.state?.userPassword;
     const navigate = useNavigate();
     const [transactionHistory, setTransactionHistory] = useState([]);
     const [page, setPage] = useState(1);
@@ -60,11 +61,11 @@ function PaymentFinished(){
             navigate("/", { state: { username, accessToken} });
           } else if (path === "/payment") {
             // Otherwise, navigate to the specified path
-            navigate("/payment", { state: { username, accessToken } });
+            navigate("/payment", { state: { username, accessToken, userPassword } });
           } else if (path === "/manage") {
-            navigate("/account", { state: { username, accessToken } });
+            navigate("/account", { state: { username, accessToken, userPassword } });
           } else if (path == "/history") {
-            navigate("/history", { state: { username, accessToken } });
+            navigate("/history", { state: { username, accessToken, userPassword } });
           }
         }
     };
@@ -86,15 +87,17 @@ function PaymentFinished(){
     };
 
     const handleNavigationClick2 = () => {
-        navigate("/history", { state: { username, accessToken } });
+        navigate("/history", { state: { username, accessToken, userPassword } });
       };
     const handleNavigationClick3 = () => {
-        navigate("/payment-pending", { state: { username, accessToken } });
+        navigate("/payment-pending", { state: { username, accessToken, userPassword } });
     };
     const handleNavigationClick4 = () => {
-        navigate("/payment-finished", { state: { username, accessToken } });
+        navigate("/payment-finished", { state: { username, accessToken, userPassword } });
     };
-
+    const handleNavigationClick5 = () => {
+      navigate("/period", { state: { username, accessToken, userPassword } });
+    };
 
     const transactionHistories = [
         {
@@ -187,6 +190,9 @@ function PaymentFinished(){
             </button>
             <button className="payment-button" onClick={handleNavigationClick4}>
               Show Finished Transactions
+            </button>
+            <button className="payment-button" onClick={handleNavigationClick5}>
+              Show Balance Within Time Period
             </button>
         </section>
         {renderTransactionHistory()}

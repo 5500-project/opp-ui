@@ -7,6 +7,7 @@ const PaymentProcess = () => {
   const location = useLocation();
   // Extracting data from location.state or providing defaults
   const username = location.state?.username || "DefaultUsername";
+  const userPassword = location.state?.userPassword || "DefaultUsername";
   const accessToken = location.state?.accessToken || "DefaultAccessToken";
   const userDataToSend = location.state?.userDataToSend;
 
@@ -16,7 +17,7 @@ const PaymentProcess = () => {
   const handleFinishTransaction = () => {
     // logic before finishing the transaction
     alert("Transaction finished!");
-    navigate("/account", { state: { username, accessToken } }); // Redirect to the main page after finishing the transaction
+    navigate("/account", { state: { username, accessToken, userPassword } }); // Redirect to the main page after finishing the transaction
   };
 
   return (

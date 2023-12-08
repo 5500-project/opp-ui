@@ -7,6 +7,7 @@ function PaymentPending(){
     const location = useLocation();
     const username = location.state?.username;
     const accessToken = location.state?.accessToken;
+    const userPassword = location.state?.userPassword;
     const navigate = useNavigate();
     const [transactionHistory, setTransactionHistory] = useState([]);
     const [page, setPage] = useState(1);
@@ -23,13 +24,16 @@ function PaymentPending(){
         navigate("/");
     };
     const handleNavigationClick2 = () => {
-        navigate("/history", { state: { username, accessToken } });
+        navigate("/history", { state: { username, accessToken, userPassword } });
     };
     const handleNavigationClick3 = () => {
-        navigate("/payment-pending", { state: { username, accessToken } });
+        navigate("/payment-pending", { state: { username, accessToken, userPassword } });
     };
     const handleNavigationClick4 = () => {
-        navigate("/payment-finished", { state: { username, accessToken } });
+        navigate("/payment-finished", { state: { username, accessToken, userPassword } });
+    };
+    const handleNavigationClick5 = () => {
+      navigate("/period", { state: { username, accessToken, userPassword } });
     };
 
     useEffect(() => {
@@ -69,11 +73,11 @@ function PaymentPending(){
             navigate("/", { state: { username, accessToken} });
           } else if (path === "/payment") {
             // Otherwise, navigate to the specified path
-            navigate("/payment", { state: { username, accessToken } });
+            navigate("/payment", { state: { username, accessToken, userPassword } });
           } else if (path === "/manage") {
-            navigate("/account", { state: { username, accessToken } });
+            navigate("/account", { state: { username, accessToken, userPassword } });
           } else if (path == "/history") {
-            navigate("/history", { state: { username, accessToken } });
+            navigate("/history", { state: { username, accessToken, userPassword } });
           }
         }
     };
@@ -103,59 +107,6 @@ function PaymentPending(){
     }
 
     //test case
-    const transactionHistories = [
-        {
-          status: "completed",
-          user_id: "1",
-          amount: 25.0,
-          transaction_date: "2023-11-20T14:30:00.000Z",
-          id: 1,
-          payment_method: "credit",
-        },
-        {
-          status: "failed",
-          user_id: "1",
-          amount: 30.0,
-          transaction_date: "2023-11-21T10:15:00.000Z",
-          id: 2,
-          payment_method: "debit",
-        },
-        {
-          status: "completed",
-          user_id: "2",
-          amount: 15.0,
-          transaction_date: "2023-11-22T18:45:00.000Z",
-          id: 3,
-          payment_method: "credit",
-        },
-        {
-          status: "completed",
-          user_id: "3",
-          amount: 40.0,
-          transaction_date: "2023-11-23T12:20:00.000Z",
-          id: 4,
-          payment_method: "debit",
-        },
-        {
-          status: "failed",
-          user_id: "2",
-          amount: 22.0,
-          transaction_date: "2023-11-24T09:00:00.000Z",
-          id: 5,
-          payment_method: "credit",
-        },
-        {
-          status: "completed",
-          user_id: "3",
-          amount: 18.0,
-          transaction_date: "2023-11-25T16:30:00.000Z",
-          id: 6,
-          payment_method: "debit",
-        },
-      ];
-
-
-
     return(
         <body>
         <header className="header">
@@ -193,6 +144,9 @@ function PaymentPending(){
             </button>
             <button className="payment-button" onClick={handleNavigationClick4}>
               Show Finished Transactions
+            </button>
+            <button className="payment-button" onClick={handleNavigationClick5}>
+              Show Balance Within Time Period
             </button>
         </section>
         {transactionHistory.length > 0 ? (

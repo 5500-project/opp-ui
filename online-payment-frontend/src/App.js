@@ -10,6 +10,7 @@ import FeaturePage from "./components/FeaturePage";
 import HelpPage from "./components/Help";
 import PaymentMain from "./payment/PaymentMain";
 import PaymentHistory from "./payment/PaymentHistory";
+import PaymentPeriod from "./payment/PaymentPeriod";
 import PaymentPending from "./payment/PaymentPending";
 import PaymentFinished from "./payment/PaymentFinished";
 import PaymentProcess from "./payment/PaymentProcess";
@@ -34,6 +35,10 @@ function App() {
           <Route
             path="/history"
             element={<PaymentHistory />}
+          />
+          <Route
+            path="/period"
+            element={<PaymentPeriod />}
           />
           <Route
             path="/features"
