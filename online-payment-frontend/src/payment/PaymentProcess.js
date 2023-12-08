@@ -40,7 +40,7 @@ const PaymentProcess = () => {
             </div>
             <div className="amount">
                 <strong>Amount:</strong> ${userDataToSend.amount}
-            </div>
+            </div>    
             <div className="payment-method">
                 <strong>Payment Method:</strong> {userDataToSend.paymentMethod}
             </div>
