@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../styles/PaymentMain.css";
@@ -15,6 +15,12 @@ function PaymentMain() {
   const [paymentMethod, setPaymentMethod] = useState("credit");
 
   const [error, setError] = useState("");
+  useEffect(() => {
+    // Check if the user is not logged in, then redirect to the homepage
+    if (!username || !accessToken) {
+      navigate("/");
+    }
+  }, [username]);
 
   const handleNavigationClick = (path) => {
     // Check if the user is logged in

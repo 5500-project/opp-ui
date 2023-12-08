@@ -17,7 +17,7 @@ function MainPage() {
   };
   const handleServiceClick = (serviceLink) => {
     // Check if the user is logged in
-    if (!username) {
+    if (!username || !accessToken) {
       // If not logged in, redirect to the login page
       navigate("/login");
     } else {

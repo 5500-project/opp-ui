@@ -42,6 +42,9 @@ function PaymentPeriod(){
       };
     
     useEffect(() => {
+      if (!username || !accessToken) {
+        navigate("/");
+      }
         fetchData();
       }, [username, page, startDate, endDate]);
     const fetchData = async () => {

@@ -25,6 +25,9 @@ function PaymentHistory(){
     };
 
     useEffect(() => {
+      if (!username || !accessToken) {
+        navigate("/");
+      }
 
         //setTransactionHistory(transactionHistories);
         // Fetch transaction history data from the backend
@@ -51,7 +54,7 @@ function PaymentHistory(){
     
     const handleNavigationClick = (path) => {
         // Check if the user is logged in
-        if (!username) {
+        if (!username || !accessToken) {
           // If not logged in, redirect to the login page
           navigate("/login");
         } else {

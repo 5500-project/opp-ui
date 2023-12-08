@@ -24,8 +24,10 @@ function PaymentFinished(){
         navigate("/");
     };
 
-    useEffect(() => {
-
+    useEffect(() => {        
+      if (!username || !accessToken) {
+          navigate("/");
+        }
         //setTransactionHistory(transactionHistories);
         // Fetch transaction history data from the backend
         const fetchData = async () => {

@@ -16,6 +16,9 @@ function AccountPage() {
     navigate("/");
   };
   useEffect(() => {
+    if (!username || !accessToken) {
+      navigate("/");
+    }
     const fetchData = async () => {
       try{
         const apiUrl = 'http://18.216.139.10:8000/transaction/get_completed';
@@ -56,7 +59,7 @@ function AccountPage() {
 
   const handleNavigationClick = (path) => {
     // Check if the user is logged in
-    if (!username) {
+    if (!username || !accessToken) {
       // If not logged in, redirect to the login page
       navigate("/login");
     } else {

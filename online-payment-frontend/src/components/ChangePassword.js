@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../styles/UserLogin.css";
@@ -12,6 +12,12 @@ const ChangePassword = () => {
   const [newpassword, setNewpassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
+  useEffect(() => {
+    // Check if the user is not logged in, then redirect to the homepage
+    if (!username || !accessToken) {
+      navigate("/");
+    }
+  }, [username]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();

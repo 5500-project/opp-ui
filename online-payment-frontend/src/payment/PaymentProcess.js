@@ -9,8 +9,16 @@ const PaymentProcess = () => {
   const username = location.state?.username || "DefaultUsername";
   const userPassword = location.state?.userPassword || "DefaultUsername";
   const accessToken = location.state?.accessToken || "DefaultAccessToken";
-  const userDataToSend = location.state?.userDataToSend;
+  const userDataToSend = location.state?.userDataToSend || "DefaultCardNumber";
   const CRYPTED = "************";
+
+  useEffect(() => {
+    // Check if the user is not logged in, then redirect to the homepage
+    if (!username || !accessToken) {
+      navigate("/");
+    }
+  }, [username]);
+
 
   
   const [verificationCode, setVerificationCode] = useState("");
